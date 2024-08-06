@@ -1,1 +1,36 @@
-<p>details-page works!</p>
+<section class="container row mx-auto p-0">
+  <div class="col">
+
+    <h2 class="fw-bold display-6">{{burger.name}}</h2>
+    <p>Ingrédients : {{burger.description}}</p>
+    <h3 class="display-9">Prix : {{burger.price}}</h3>
+
+  </div>
+
+  <div class="col">
+    @if(burger.status === 'published') {
+      <p>
+        <span class="badge text-bg-success">Actuellement disponible</span>
+      </p>
+
+    } @else {
+      <p>
+        <span class="badge text-bg-danger">Actuellement indisponible</span>
+      </p>
+    }
+    <img src="{{burger.image}}" alt="{{burger.image}}" class="border">
+  </div>
+</section>
+
+<section class="container">
+  <hr>
+  <h3 class="display-6 fw-bold mb-3">Autres produits</h3>
+</section>
+
+<section class="container">
+  <div class="row align-items-center">
+    @for (burger of burgers; track burger.name) {
+      <app-burger-card [burger]="burger" class="col-4"></app-burger-card>
+    }
+  </div>
+</section>

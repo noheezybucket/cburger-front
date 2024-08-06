@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HeaderComponent} from "../../components/header/header.component";
 import {Burger} from "../../models/burger";
 import {BurgerCardComponent} from "../../components/burger-card/burger-card.component";
+import {CustomerService} from "../../services/customer.service";
 
 @Component({
   selector: 'app-home-page',
@@ -14,38 +15,20 @@ import {BurgerCardComponent} from "../../components/burger-card/burger-card.comp
   styleUrl: './home-page.component.css',
 })
 export class HomePageComponent implements OnInit{
-  burgers!: Burger[]
+  burgers: any = []
+
+  constructor(private customerService:CustomerService) {
+  }
+
   ngOnInit() {
-    this.burgers = [
-      new Burger(
-        1,
-        'Double cheese burger',
-        'Emmental, Steak etc.',
-        true,
-        'default',
-        2500
-      ),new Burger(
-        2,
-        'Razor Baw burger',
-        'Emmental, Steak etc.',
-        true,
-        'default',
-        2500
-      ),new Burger(
-        3,
-        'Carré dans laxe burger',
-        'Emmental, Steak etc.',
-        true,
-        'default',
-        2500
-      ),new Burger(
-        4,
-        'Carré dans laxe burger',
-        'Emmental, Steak etc.',
-        true,
-        'default',
-        2500
-      ),
-    ]
+    this.customerService.getCatalogue().subscribe(
+      (res: any) => {
+        this.burgers = res.data;
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    )
+
   }
 }

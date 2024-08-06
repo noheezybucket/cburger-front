@@ -1,21 +1,25 @@
-<!-- Hero 1 - Bootstrap Brain Component -->
-<section class="bsb-hero-1 px-3 bsb-overlay bsb-hover-pull mb-4" style="background-image: url('https://img.freepik.com/free-photo/big-sandwich-hamburger-burger-with-beef-red-onion-tomato-fried-bacon_2829-5398.jpg?t=st=1722896388~exp=1722899988~hmac=ed2a85e6daaa57acdee2d95167bd914b84e5c562cfde5f6152c4d881f83d14b7&w=1480');">
+<section class="bsb-hero-1 px-3 bsb-overlay bsb-hover-pull mb-4" style="background-image: url('https://images.unsplash.com/photo-1552913902-366e726db79e?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center">
   <div class="container py-5">
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-md-center py-5">
       <div class="col-12 col-md-11 col-lg-9 col-xl-7 col-xxl-6 text-center text-white">
-        <h2 class="display-3 fw-bold mb-3">CBurger</h2>
-        <p class="lead mb-5">Powerful, extensible, and feature-packed frontend toolkit. Build and customize with Sass, utilize prebuilt grid system and components, and bring projects to life with powerful JavaScript plugins.</p>
+        <h2 class="display-3 fw-bold mb-3">CBurger | Catalogue</h2>
+        <p class="lead mb-3">Venez gouter la différence...</p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
           <button type="button" class="btn bsb-btn-xl btn-dark gap-3">Voir le catalogue</button>
-          <button type="button" class="btn bsb-btn-xl btn-outline-dark">Contactez-nous</button>
+          <button type="button" class="btn bsb-btn-xl btn-light">Contactez-nous</button>
         </div>
       </div>
     </div>
   </div>
 </section>
+<section class="container">
+  <h3 class="display-6 fw-bold mb-3">Découvrez nos burgers</h3>
+</section>
+<section class="container">
+  <div class="row align-items-center">
+    @for (burger of burgers; track burger.name) {
+      <app-burger-card [burger]="burger" class="col-6"></app-burger-card>
+    }
+  </div>
+</section>
 
-<div class="container row">
-  @for (burger of burgers; track burger.name) {
-    <app-burger-card [burgers]="burger" class="col-6"></app-burger-card>
-  }
-</div>

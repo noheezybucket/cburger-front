@@ -12,5 +12,5 @@ import {RouterLink} from "@angular/router";
   styleUrl: './burger-card.component.css'
 })
 export class BurgerCardComponent {
-  @Input() burgers!: Burger;
+  @Input() burger!: Burger;
 }
