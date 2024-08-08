@@ -1,1 +1,78 @@
-<p>update-burger works!</p>
+<!--@if (created) {-->
+<!--  <div class="alert alert-success alert-dismissible fade show container" role="alert">-->
+<!--    <strong>Burger créer avec succès </strong> <a routerLink="/manager/burgers/list">Retour au catalogue</a>.-->
+<!--    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
+<!--  </div>-->
+<!--}-->
+
+<section class="container">
+  <form #updateBurgerForm="ngForm" (ngSubmit)="onSubmitForm(updateBurgerForm, burger.id)">
+    <div class="row">
+      <div class="mb-3 col">
+        <label for="name" class="form-label">Nom du burger</label>
+        <input type="text"
+               class="form-control"
+               id="name"
+               name="name"
+               placeholder="e.g : Burger Big Maxi"
+               [(ngModel)]="name"
+               required
+        />
+      </div>
+
+      <div class="mb-3 col">
+        <label for="price" class="form-label">Prix</label>
+        <input type="number"
+               class="form-control"
+               id="price"
+               name="price"
+               placeholder="e.g : 2500"
+               [(ngModel)]="price"
+               required
+
+        >
+      </div>
+
+    </div>
+
+    <div class="row">
+
+
+
+      <div class="mb-3 col">
+        <label for="image" class="form-label">Image</label>
+        <input type="text"
+               class="form-control"
+               id="image"
+               name="image"
+               placeholder="https://url-image.com"
+               [(ngModel)]="image"
+               required
+
+        >
+      </div>
+
+    </div>
+
+    <select name="status" [(ngModel)]="status" class="form-select">
+      <option value="archived">Archivé</option>
+      <option value="published">Publié</option>
+    </select>
+
+    <div class="mb-3 col">
+      <label for="description" class="form-label">Description</label>
+      <textarea type="text"
+                class="form-control"
+                id="description"
+                name="description"
+                placeholder="e.g : Steak, Emmental, Sauce algérienne etc..."
+                [(ngModel)]="description"
+                required
+
+      ></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-dark">Modifier le burger</button>
+  </form>
+
+</section>

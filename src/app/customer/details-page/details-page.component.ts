@@ -1,21 +1,31 @@
 import {Component, Input} from '@angular/core';
-import {ActivatedRoute, RouterOutlet} from "@angular/router";
-import {CustomerService} from "../../services/customer.service";
+import {ActivatedRoute, Router, RouterLink, RouterOutlet} from "@angular/router";
+import {ApiService} from "../../services/api.service";
 import {BurgerCardComponent} from "../../components/burger-card/burger-card.component";
+import {FormsModule, NgForm} from "@angular/forms";
+import {OrderValidatedComponent} from "../order-validated/order-validated.component";
 
 @Component({
   selector: 'app-details-page',
   standalone: true,
-  imports: [RouterOutlet, BurgerCardComponent],
+  imports: [RouterOutlet, BurgerCardComponent, RouterLink, FormsModule, OrderValidatedComponent],
   templateUrl: './details-page.component.html',
   styleUrl: './details-page.component.css'
 })
 export class DetailsPageComponent {
   burger: any = []
   burgers : any =[]
+  ordered : boolean = false;
+  burger_id : any
+  client_firstname !: string
+  client_lastname !: string
+  client_address !: string
+  client_phone !: number
 
-  constructor(private customerService:CustomerService,
-              private route:ActivatedRoute) {}
+  constructor(private customerService:ApiService,
+              private route:ActivatedRoute,
+              private router:Router
+  ) {}
 
   ngOnInit() {
     const burgerId = this.route.snapshot.params['burgerId'];
@@ -40,4 +50,15 @@ export class DetailsPageComponent {
     )
   }
 
+  onSubmitForm(form:NgForm) {
+    form.value.burger_id = this.burger.id
+    this.customerService.createOrder(form.value).subscribe(
+      (res: any) => {
+        this.ordered = true;
+        setTimeout(()=> {
+          this.router.navigate(['/customer/catalogue']);
+        }, 3000)
+      }
+    )
   }
+}

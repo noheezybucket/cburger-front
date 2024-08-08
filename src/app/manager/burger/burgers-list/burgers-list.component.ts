@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 import {BurgerCardComponent} from "../../../components/burger-card/burger-card.component";
-import {CustomerService} from "../../../services/customer.service";
-import {RouterLink} from "@angular/router";
+import {ApiService} from "../../../services/api.service";
+import {Router, RouterLink} from "@angular/router";
+import {FormsModule, NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-burgers-list',
   standalone: true,
   imports: [
     BurgerCardComponent,
-    RouterLink
+    RouterLink,
+    FormsModule
   ],
   templateUrl: './burgers-list.component.html',
   styleUrl: './burgers-list.component.css'
@@ -16,11 +18,12 @@ import {RouterLink} from "@angular/router";
 export class BurgersListComponent {
   burgers: any = []
 
-  constructor(private customerService:CustomerService) {
+
+  constructor(private managerService:ApiService, private router:Router) {
   }
 
   ngOnInit() {
-    this.customerService.getCatalogue().subscribe(
+    this.managerService.getCatalogue().subscribe(
       (res: any) => {
         this.burgers = res.data;
       },
@@ -28,6 +31,21 @@ export class BurgersListComponent {
         console.log(err);
       }
     )
-
   }
+
+  deleteBurger(id: number) {
+    this.managerService.deleteBurger(id).subscribe(
+      (res: any) => {
+        this.router.navigate(['/manager/burgers/list']).then(() => {
+          window.location.reload();
+        });
+        console.log(res.data)
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    )
+  }
+
+
 }

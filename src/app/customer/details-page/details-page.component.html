@@ -1,13 +1,11 @@
-<section class="container row mx-auto p-0">
-  <div class="col">
-
-    <h2 class="fw-bold display-6">{{burger.name}}</h2>
-    <p>Ingrédients : {{burger.description}}</p>
-    <h3 class="display-9">Prix : {{burger.price}}</h3>
-
-  </div>
+@if (ordered) {
+  <app-order-validated></app-order-validated>
+}
+<section class="container row mx-auto p-0 mt-5">
 
   <div class="col">
+
+    <h3 class="fw-bold display-7">1. Description</h3>
     @if(burger.status === 'published') {
       <p>
         <span class="badge text-bg-success">Actuellement disponible</span>
@@ -18,19 +16,99 @@
         <span class="badge text-bg-danger">Actuellement indisponible</span>
       </p>
     }
-    <img src="{{burger.image}}" alt="{{burger.image}}" class="border">
-  </div>
-</section>
+    <h4 class="fw-normal">Nom : {{burger.name}}</h4>
+    <p class="fw-normal">Ingrédients : {{burger.description}}</p>
+    <h4 >Prix : {{burger.price}} XOF</h4>
+    <hr>
+    <h3 class="display-7 fw-bold mb-3">2. Passez votre commande</h3>
+    @if(burger.status === 'published') {
 
-<section class="container">
-  <hr>
-  <h3 class="display-6 fw-bold mb-3">Autres produits</h3>
-</section>
+    <form #orderForm="ngForm" (ngSubmit)="onSubmitForm(orderForm)">
+      <input type="hidden"
+             class="form-control"
+             id="burger_id"
+             name="burger_id"
+             [(ngModel)]="burger_id"
+      />
 
-<section class="container">
-  <div class="row align-items-center">
-    @for (burger of burgers; track burger.name) {
-      <app-burger-card [burger]="burger" class="col-4"></app-burger-card>
+        <div class="mb-3 col">
+          <label for="client_firstname" class="form-label">Prénom</label>
+          <input type="text"
+                 class="form-control"
+                 id="client_firstname"
+                 name="client_firstname"
+                 placeholder="e.g : Ndiage"
+                 [(ngModel)]="client_firstname"
+                 required
+          />
+        </div>
+
+        <div class="mb-3 col">
+          <label for="client_lastname" class="form-label">Nom</label>
+          <input type="text"
+                 class="form-control"
+                 id="client_lastname"
+                 name="client_lastname"
+                 placeholder="e.g : Doe"
+                 [(ngModel)]="client_lastname"
+                 required
+
+          >
+        </div>
+
+
+        <div class="mb-3 col">
+          <label for="client_phone" class="form-label">Téléphone</label>
+          <input type="number"
+                 class="form-control"
+                 id="client_phone"
+                 name="client_phone"
+                 placeholder="e.g : 771112233"
+                 [(ngModel)]="client_phone"
+                 required
+
+          >
+        </div>
+
+        <div class="mb-3 col">
+          <label for="client_address" class="form-label">Adresse</label>
+          <input type="text"
+                 class="form-control"
+                 id="client_address"
+                 name="client_address"
+                 placeholder="e.g : Touba Ouakam, Cite Avion"
+                 [(ngModel)]="client_address"
+                 required
+
+          >
+        </div>
+
+
+      <button type="submit" class="btn btn-dark w-100">Je commande cet article</button>
+    </form>
+    } @else {
+      <p>
+        Les commandes pour cet article ne sont actuellement pas disponibles... <br>
+        Réessayez plus tard...
+      </p>
     }
+
+  </div>
+
+  <div class="col">
+    <img src="{{burger.image}}" alt="{{burger.image}}" class="rounded border" style="width: 100%;height: 100%; max-height: 650px; object-fit: cover">
   </div>
 </section>
+
+<!--<section class="container">-->
+<!--  <hr>-->
+<!--  <h3 class="display-7 fw-bold mb-3">Autres produits</h3>-->
+<!--</section>-->
+
+<!--<section class="container">-->
+<!--  <div class="row align-items-center">-->
+<!--    @for (burger of burgers; track burger.name) {-->
+<!--      <app-burger-card [burger]="burger" class="col-4"></app-burger-card>-->
+<!--    }-->
+<!--  </div>-->
+<!--</section>-->

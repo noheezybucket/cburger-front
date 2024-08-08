@@ -3,7 +3,7 @@ import {RouterOutlet} from "@angular/router";
 import {HeaderManagerComponent} from "../components/header-manager/header-manager.component";
 import {FooterManagerComponent} from "../components/footer-manager/footer-manager.component";
 import {HttpClientModule} from "@angular/common/http";
-import {CustomerService} from "../services/customer.service";
+import {ApiService} from "../services/api.service";
 
 @Component({
   selector: 'app-manager',
@@ -14,7 +14,7 @@ import {CustomerService} from "../services/customer.service";
     FooterManagerComponent,
     HttpClientModule
   ],
-  providers:[CustomerService],
+  providers:[ApiService],
   templateUrl: './manager.component.html',
   styleUrl: './manager.component.css'
 })

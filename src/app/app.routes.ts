@@ -12,6 +12,8 @@ import {BurgersListComponent} from "./manager/burger/burgers-list/burgers-list.c
 import {CreateBurgerComponent} from "./manager/burger/create-burger/create-burger.component";
 import {UpdateBurgerComponent} from "./manager/burger/update-burger/update-burger.component";
 import {SingleBurgerComponent} from "./manager/burger/single-burger/single-burger.component";
+import {OrdersListComponent} from "./manager/order/orders-list/orders-list.component";
+import {SingleOrderComponent} from "./manager/order/single-order/single-order.component";
 
 export const routes: Routes = [
   { path: '',   redirectTo: '/customer/catalogue', pathMatch: 'full' },
@@ -51,6 +53,7 @@ export const routes: Routes = [
         path:'home',
         component: HomePageComponent,
       },
+
       {
         title: 'Burgers',
         path:'burgers',
@@ -75,6 +78,24 @@ export const routes: Routes = [
             title: 'Update burger',
             path:':burgerId',
             component: SingleBurgerComponent,
+          },
+        ]
+      },
+
+      {
+        title: 'Orders',
+        path:'orders',
+        component: BurgerComponent,
+        children : [
+          {
+            title: 'Orders list',
+            path:'list',
+            component: OrdersListComponent,
+          },
+          {
+            title: 'Single Order',
+            path:'update/:orderId',
+            component: SingleOrderComponent,
           },
         ]
       }

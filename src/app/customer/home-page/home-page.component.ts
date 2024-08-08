@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HeaderComponent} from "../../components/header/header.component";
 import {Burger} from "../../models/burger";
 import {BurgerCardComponent} from "../../components/burger-card/burger-card.component";
-import {CustomerService} from "../../services/customer.service";
+import {ApiService} from "../../services/api.service";
 
 @Component({
   selector: 'app-home-page',
@@ -17,7 +17,7 @@ import {CustomerService} from "../../services/customer.service";
 export class HomePageComponent implements OnInit{
   burgers: any = []
 
-  constructor(private customerService:CustomerService) {
+  constructor(private customerService:ApiService) {
   }
 
   ngOnInit() {

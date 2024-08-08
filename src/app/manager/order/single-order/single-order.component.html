@@ -1,0 +1,104 @@
+<section class="container my-5">
+  <h4 class="fw-normal">Infos commande</h4>
+  <div class="mb-3 row">
+    <div class="col">
+      <img src="{{order.burger.image}}" class="rounded" style="width: 100%; height: 300px; object-fit: cover"/>
+    </div>
+    <div class="col">
+
+      <h3>Burger : {{order.burger.name}}</h3>
+      <p>Description : {{order.burger.description}}</p>
+      <p>Statut :
+        @if (order.payed) {
+            <span class="badge text-bg-success">PAYÉ</span>
+        } @else{
+
+          @if(order.status === "En cours" || order.status === "Annuler") {
+              <span class="badge text-bg-danger">{{order.status}}</span>
+          } @else if (order.status === "Terminer" || order.status === "Payer") {
+              <span class="badge text-bg-warning">{{order.status}}</span>
+          }
+
+        }
+      </p>
+      <h3>Total à payer : {{order.burger.price}}</h3>
+    </div>
+  </div>
+  <form #orderForm="ngForm" (ngSubmit)="onSubmitForm(orderForm, order.id)">
+    <fieldset class="mt-3">
+      <legend>Statut commande</legend>
+      <input type="hidden" name="payed" [(ngModel)]="payed">
+      @if(!order.payed) {
+        <select name="status" [(ngModel)]="status" class="form-select">
+          @if (order.status === "En cours") {
+            <option value="Terminer">Terminer</option>
+            <option value="Annuler">Annuler</option>
+          } @else if (order.status === "Terminer") {
+            <option value="Payer">Payer</option>
+          } @else if(order.status === "Annuler") {
+            <option value="Terminer">Terminer</option>
+
+          }@else {
+          <option value="En cours">En cours</option>
+
+          }
+        </select>
+      } @else {
+        <div>
+          <span class="bg-success p-1 display-6 text-light rounded">COMMANDE PAYÉ</span>
+        </div>
+      }
+    </fieldset>
+
+    <fieldset [disabled]="true" class="mt-3">
+      <legend>Infos client</legend>
+      <div class="mb-3 col">
+        <label for="client_firstname" class="form-label">Prénom</label>
+        <input type="text"
+               class="form-control"
+               id="client_firstname"
+               name="client_firstname"
+               placeholder="e.g : Ndiage"
+               [(ngModel)]="client_firstname"
+        />
+      </div>
+
+      <div class="mb-3 col">
+        <label for="client_lastname" class="form-label">Nom</label>
+        <input type="text"
+               class="form-control"
+               id="client_lastname"
+               name="client_lastname"
+               placeholder="e.g : Doe"
+               [(ngModel)]="client_lastname"
+               required
+        >
+      </div>
+
+
+      <div class="mb-3 col">
+        <label for="client_phone" class="form-label">Téléphone</label>
+        <input type="number"
+               class="form-control"
+               id="client_phone"
+               name="client_phone"
+               placeholder="e.g : 771112233"
+               [(ngModel)]="client_phone"
+        >
+      </div>
+
+      <div class="mb-3 col">
+        <label for="client_address" class="form-label">Adresse</label>
+        <input type="text"
+               class="form-control"
+               id="client_address"
+               name="client_address"
+               placeholder="e.g : Touba Ouakam, Cite Avion"
+               [(ngModel)]="client_address"
+        >
+      </div>
+    </fieldset>
+
+    <button type="submit" class="btn btn-dark w-100">Modifier la commande</button>
+  </form>
+</section>

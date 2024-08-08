@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {RouterOutlet} from "@angular/router";
 import {HeaderComponent} from "../components/header/header.component";
 import {HttpClientModule} from "@angular/common/http";
-import {CustomerService} from "../services/customer.service";
+import {ApiService} from "../services/api.service";
 import {FooterComponent} from "../components/footer/footer.component";
 
 @Component({
@@ -14,7 +14,7 @@ import {FooterComponent} from "../components/footer/footer.component";
     HttpClientModule,
     FooterComponent
   ],
-  providers:[CustomerService],
+  providers:[ApiService],
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.css'
 })
