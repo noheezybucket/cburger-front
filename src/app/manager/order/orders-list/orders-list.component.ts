@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import {ApiService} from "../../../services/api.service";
 import {RouterLink} from "@angular/router";
+import {StatsComponent} from "../../../components/stats/stats.component";
 
 @Component({
   selector: 'app-orders-list',
   standalone: true,
   imports: [
-    RouterLink
+    RouterLink,
+    StatsComponent
   ],
   templateUrl: './orders-list.component.html',
   styleUrl: './orders-list.component.css'

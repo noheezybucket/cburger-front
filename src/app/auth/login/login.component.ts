@@ -39,10 +39,12 @@ export class LoginComponent implements OnInit{
           console.log(res)
         }, (err:any) =>  {
           console.log(err)
+          this.errorMessage = "Identifiants incorrectes... Merci de vérifier vos saisies"
+
         }
       )
     } else {
-      this.errorMessage = "Saisies incorrectes... Merci de vérifier vos saisies"
+      this.errorMessage = "Veuillez remplir les champs"
 
     }
   }

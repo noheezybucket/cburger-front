@@ -3,6 +3,7 @@ import {BurgerCardComponent} from "../../../components/burger-card/burger-card.c
 import {ApiService} from "../../../services/api.service";
 import {Router, RouterLink} from "@angular/router";
 import {FormsModule, NgForm} from "@angular/forms";
+import {StatsComponent} from "../../../components/stats/stats.component";
 
 @Component({
   selector: 'app-burgers-list',
@@ -10,7 +11,8 @@ import {FormsModule, NgForm} from "@angular/forms";
   imports: [
     BurgerCardComponent,
     RouterLink,
-    FormsModule
+    FormsModule,
+    StatsComponent
   ],
   templateUrl: './burgers-list.component.html',
   styleUrl: './burgers-list.component.css'

@@ -23,6 +23,7 @@ export class CreateBurgerComponent implements OnInit {
   image !: string
   created : boolean = false
   timeout = 5
+  errorMessage : string = ""
 
   constructor(private managerService:ApiService,
               private route:ActivatedRoute,
@@ -36,13 +37,23 @@ export class CreateBurgerComponent implements OnInit {
   onSubmitForm(form: NgForm) {
     console.log(form.value)
 
+    if(this.name != undefined || this.description != undefined || this.price != undefined || this.image != undefined ){
+
     this.managerService.createBurger(form.value).subscribe(
       (res: any) => {
         this.created = true
         console.log(res)
         this.router.navigateByUrl('/manager/burgers/list')
+      }, (err: any) => {
+        console.log(err)
+        this.errorMessage = "Saisies incorrectes... Merci de vérifier vos saisies"
+
       }
     )
+    } else {
+      this.errorMessage = "Veuillez remplir les champs"
+    }
+
   }
 
 }

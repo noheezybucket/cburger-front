@@ -22,6 +22,9 @@ export class UpdateBurgerComponent {
 
   burger !: any
 
+  errorMessage : string = ""
+
+
   constructor(private managerService:ApiService,
               private route:ActivatedRoute,
               private router:Router) {
@@ -48,15 +51,22 @@ export class UpdateBurgerComponent {
 
   onSubmitForm(form: NgForm, burgerId:any) {
     console.log(form.value)
+    if(this.name != undefined || this.description != undefined || this.price != undefined || this.image != undefined ) {
 
-    this.managerService.updateBurger(form.value,burgerId).subscribe(
-      (res: any) => {
-        console.log(res)
-        this.router.navigate(['/manager/burgers/list'])
+      this.managerService.updateBurger(form.value, burgerId).subscribe(
+        (res: any) => {
+          console.log(res)
+          this.router.navigate(['/manager/burgers/list'])
 
-      }, (err: any) => {
-        console.log(err)
-      }
-    )
+        }, (err: any) => {
+          this.errorMessage = "Saisies incorrectes... Merci de vérifier vos saisies"
+
+          console.log(err)
+        }
+      )
+    } else {
+      this.errorMessage = "Veuillez remplir les champs"
+
+    }
   }
 }

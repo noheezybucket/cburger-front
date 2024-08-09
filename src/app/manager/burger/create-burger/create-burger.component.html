@@ -6,6 +6,11 @@
 <!--}-->
 
 <section class="container">
+  @if (errorMessage !== ""){
+    <p class="bg-danger text-light p-1 rounded">
+      {{errorMessage}}
+    </p>
+  }
   <form #createBurgerForm="ngForm" (ngSubmit)="onSubmitForm(createBurgerForm)">
     <div class="row">
       <div class="mb-3 col">

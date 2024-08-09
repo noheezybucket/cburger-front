@@ -1,12 +1,13 @@
 <div class="card mb-3 " >
   <div class="row g-0">
     <div class="col-md-4 h-full">
-      <img src="{{burger.image}}" class="img-fluid rounded-start" style="max-height:170px; height: 100%; width:100%; max-width: 170px; object-fit: cover" alt="{{burger.image}}">
+      <img src="{{burger.image}}" class="img-fluid rounded-start" style="max-height:180px; height: 100%; width:100%; max-width: 100%; object-fit: cover" alt="{{burger.image}}">
     </div>
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">{{burger.name}}</h5>
         <p class="card-text">{{burger.description}}</p>
+        <h5 class="card-text">{{burger.price}} XOF</h5>
         <a [routerLink]="['/customer/burgers', burger.id]" class="btn btn-dark">Commander ce burger</a> <br>
 <!--        <a [routerLink]="['/customer/catalogue', burger.id]" class="btn btn-outline-dark">Voir les détails</a>-->
       </div>
