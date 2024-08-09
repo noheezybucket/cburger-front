@@ -10,7 +10,7 @@
       <p>Description : {{order.burger.description}}</p>
       <p>Statut :
         @if (order.payed) {
-            <span class="badge text-bg-success">PAYÉ</span>
+            <span class="badge text-bg-success">PAYÉ le {{order.updated_at}}</span>
         } @else{
 
           @if(order.status === "En cours" || order.status === "Annuler") {
@@ -45,7 +45,7 @@
         </select>
       } @else {
         <div>
-          <span class="bg-success p-1 display-6 text-light rounded">COMMANDE PAYÉ</span>
+          <span class="bg-success p-1 display-6 text-light rounded">COMMANDE PAYÉ le {{order.updated_at}}</span>
         </div>
       }
     </fieldset>

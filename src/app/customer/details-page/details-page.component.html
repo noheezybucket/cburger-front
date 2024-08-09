@@ -22,7 +22,11 @@
     <hr>
     <h3 class="display-7 fw-bold mb-3">2. Passez votre commande</h3>
     @if(burger.status === 'published') {
-
+    @if (errorMessage !== ""){
+      <p class="bg-danger text-light p-1 rounded">
+        {{errorMessage}}
+      </p>
+    }
     <form #orderForm="ngForm" (ngSubmit)="onSubmitForm(orderForm)">
       <input type="hidden"
              class="form-control"
