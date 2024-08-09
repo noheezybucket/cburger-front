@@ -21,6 +21,7 @@ export class DetailsPageComponent {
   client_lastname !: string
   client_address !: string
   client_phone !: number
+  errorMessage = ""
 
   constructor(private customerService:ApiService,
               private route:ActivatedRoute,
@@ -52,7 +53,13 @@ export class DetailsPageComponent {
 
   onSubmitForm(form:NgForm) {
     form.value.burger_id = this.burger.id
-    this.customerService.createOrder(form.value).subscribe(
+    if(this.client_firstname !== undefined ||
+      this.client_lastname !== undefined ||
+      this.client_address !== undefined ||
+      this.client_phone !== undefined)
+    {
+      this.errorMessage = ""
+      this.customerService.createOrder(form.value).subscribe(
       (res: any) => {
         this.ordered = true;
         setTimeout(()=> {
@@ -60,5 +67,9 @@ export class DetailsPageComponent {
         }, 3000)
       }
     )
+  } else {
+      this.errorMessage = "Saisies incorrectes... Merci de vérifier vos saisies"
+    }
   }
+
 }

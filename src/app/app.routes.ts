@@ -14,10 +14,18 @@ import {UpdateBurgerComponent} from "./manager/burger/update-burger/update-burge
 import {SingleBurgerComponent} from "./manager/burger/single-burger/single-burger.component";
 import {OrdersListComponent} from "./manager/order/orders-list/orders-list.component";
 import {SingleOrderComponent} from "./manager/order/single-order/single-order.component";
+import {LoginComponent} from "./auth/login/login.component";
+import {AuthGuard} from "./guards/auth.guard";
 
 export const routes: Routes = [
   { path: '',   redirectTo: '/customer/catalogue', pathMatch: 'full' },
-  { path: 'auth/login', component: AuthComponent },
+  { path: 'auth', component: AuthComponent, children : [
+      {
+        title: 'Login',
+        path:'login',
+        component: LoginComponent,
+      },
+    ] },
   { path: 'customer',
     title:'Client',
     component: CustomerComponent,
@@ -46,6 +54,7 @@ export const routes: Routes = [
   },
   { path: 'manager',
     title:'Manager',
+    canActivate: [AuthGuard],
     component: ManagerComponent,
     children : [
       {
